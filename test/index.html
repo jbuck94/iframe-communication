@@ -1,0 +1,86 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+        <script type="text/javascript" src="js/porthole.min.js"></script>
+
+        <script type="text/javascript">
+          function onMessage(messageEvent) {
+            if (messageEvent.data["color"]) {
+              document.body.bgColor = messageEvent.data["color"];
+            }
+          }
+
+          
+          var windowProxy;
+          window.onload=function(){ 
+            windowProxy = new Porthole.WindowProxy("http://jbuck.test.staging.ucdev.net/proxy.html"); 
+            windowProxy.addEventListener(onMessage);
+          }
+        </script>
+
+
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+  
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+
+    <div class="container">
+        
+      <div>
+        <input onclick="windowProxy.post({'color':'blue'});" type="submit" value="Color Parent Blue"/>
+        <input onclick="windowProxy.post({'color':'green'});" type="submit" value="Color Parent Green"/>
+        <input onclick="windowProxy.post({'expanded':true});" type="submit" value="Expand Me"/>
+        <input onclick="windowProxy.post({'expanded':false});" type="submit" value="Shrink Me"/>
+      </div>
+
+
+
+      <div>
+        <label>Select:</label>
+        <select class="toggle_div" />
+          <option value="">Select</option>
+          <option value="a">A</option>
+          <option value="b">B</option>
+        </select>
+      </div>
+
+      <div id="group_a"> 
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ac turpis at sem porttitor pretium eleifend in odio. Vestibulum rhoncus dignissim quam, at vulputate turpis dignissim et. Nam in venenatis sapien. Nullam et nisl id leo semper tristique. Sed vehicula aliquam purus ac posuere. Ut tincidunt malesuada mauris, ac iaculis metus gravida pretium. Sed id augue orci, sit amet rhoncus ligula. Suspendisse dui felis, suscipit quis dignissim et, sollicitudin nec velit. Etiam enim arcu, auctor ut pellentesque vel, dictum eget nisi. Maecenas sagittis dapibus tincidunt. Sed rutrum blandit mi quis malesuada. Vivamus lacinia tortor ut tellus suscipit blandit. Aliquam posuere est eu neque iaculis accumsan porttitor diam sodales. Integer malesuada lectus est. Donec tincidunt enim ac mauris auctor posuere. 
+      </div>
+
+      <div id="group_b">
+        Sed non nulla quis arcu aliquet tincidunt. Quisque sit amet erat eu justo posuere pretium. Aliquam ligula nisl, viverra vestibulum tincidunt eget, pulvinar sit amet nisl. Mauris tellus nibh, dignissim id malesuada eu, placerat eget urna. Nam feugiat metus id diam rhoncus malesuada. Proin condimentum, risus eu lacinia laoreet, eros nisl molestie libero, vel fringilla turpis dolor eget augue. Vestibulum felis ipsum, dapibus eu blandit quis, porttitor at nibh. Quisque venenatis viverra malesuada. Praesent eleifend lobortis faucibus. Aenean nec gravida ligula. Pellentesque vehicula, elit eu tempor convallis, libero tellus ultricies felis, lobortis semper augue lorem in arcu. Curabitur et dui et justo tincidunt congue mattis nec risus. Nullam viverra, lacus et congue lacinia, erat tellus ultrices ante, nec convallis felis justo non nibh. Curabitur turpis sem, placerat nec luctus vel, euismod vel orci. Duis gravida lobortis nisi, et placerat nisl varius sit amet.  Sed non nulla quis arcu aliquet tincidunt. Quisque sit amet erat eu justo posuere pretium. Aliquam ligula nisl, viverra vestibulum tincidunt eget, pulvinar sit amet nisl. Mauris tellus nibh, dignissim id malesuada eu, placerat eget urna. Nam feugiat metus id diam rhoncus malesuada. Proin condimentum, risus eu lacinia laoreet, eros nisl molestie libero, vel fringilla turpis dolor eget augue. Vestibulum felis ipsum, dapibus eu blandit quis, porttitor at nibh. Quisque venenatis viverra malesuada. Praesent eleifend lobortis faucibus. Aenean nec gravida ligula. Pellentesque vehicula, elit eu tempor convallis, libero tellus ultricies felis, lobortis semper augue lorem in arcu. Curabitur et dui et justo tincidunt congue mattis nec risus. Nullam viverra, lacus et congue lacinia, erat tellus ultrices ante, nec convallis felis justo non nibh. Curabitur turpis sem, placerat nec luctus vel, euismod vel orci. Duis gravida lobortis nisi, et placerat nisl varius sit amet. 
+
+      </div>
+    </div> <!-- /container -->
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+
+    </body>
+</html>
