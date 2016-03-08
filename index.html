@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Porthole Demo</title>
+		<script type="text/javascript" src="js/porthole.min.js"></script>
+	</head>
+	<body>
+		<div>
+			<h1>iframe holder</h1>
+			<iframe id="guestFrame1" name="guestFrame1" width="500px" height="150px" frameborder="1" scrolling="no" src="http://jbuck.iframes.staging.ucdev.net/porthole/example/3/porthole/iframe.html"></iframe>
+		</div>
+
+		<script type="text/javascript">
+			var guestDomain = 'jbuck.porthole.staging.ucdev.net';
+			
+			function onMessage(messageEvent) {  
+					if (messageEvent.data["height"]) {
+						el = document.getElementById('guestFrame1');
+					    el.setAttribute('height', messageEvent.data["height"]);
+					    el.setAttribute('overflow', 'hidden');
+					}
+				}
+			
+			var windowProxy;
+			window.onload=function(){ 
+					// Create a proxy window to send to and receive message from the guest iframe
+					windowProxy = new Porthole.WindowProxy('http://' + guestDomain + '/porthole/proxy.html', 'guestFrame1');
+					windowProxy.addEventListener(onMessage);
+			};
+		</script>
+	</body>
+</html>

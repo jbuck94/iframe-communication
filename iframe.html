@@ -1,0 +1,49 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Porthole Guest Content</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+		<script type="text/javascript" src="http://sandbox.ternarylabs.com/porthole/js/porthole.min.js"></script>
+	</head>
+	<body>
+		<div>
+			<div>
+				<input type="submit" value="Add P" id="printSize" />
+        	</div>
+        	<div id="myList"></div>
+      	</div>
+
+		<script> // Working Size Reload JS
+
+			function onMessage(messageEvent) {
+				if (messageEvent.data["color"]) {
+					document.body.bgColor = messageEvent.data["color"];
+				}
+			}
+			var windowProxy;
+			window.onload=function(){ 
+				windowProxy = new Porthole.WindowProxy("http://jbuck.porthole.staging.ucdev.net/porthole/proxy.html"); 
+				windowProxy.addEventListener(onMessage);
+			}
+
+			var _docHeight = $(".gsc-wrapper").height();
+
+			setInterval(function() {
+				//console.log($('body').outerHeight());
+				windowProxy.post({'height': ($('body').outerHeight(true) + 16)}); // May need to change 16, compare value from console above with actual height of iframe to find the px difference (will be constant)
+			}, 100);
+		</script>
+
+		<script> // Add <p> JS - remove when replacing iframe content
+			document.getElementById("printSize").addEventListener("click", function() {
+				var node = document.createElement("p");
+				var textnode = document.createTextNode("new line");
+				node.appendChild(textnode);
+				document.getElementById("myList").appendChild(node);
+			});
+		</script>
+	</body>
+</html>
